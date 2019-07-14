@@ -1,7 +1,7 @@
 # Docker image for Flutter Android builds on Azure Pipelines
 
 <p align="center">
-  <img src="images/docker-image-android-flutter-for-azure-pipelines.png">
+  <img src="https://raw.githubusercontent.com/messeb/docker-image-flutter-azure-pipelines/master/images/docker-image-android-flutter-for-azure-pipelines.png">
 </p>
 
 Installs latest stable Flutter version with Flutter Version Manager ([https://github.com/leoafarias/fvm](https://github.com/leoafarias/fvm)) on top of the Android image of [inovex GmbH](https://www.inovex.de/de/leistungen/apps/) ([https://github.com/inovex/gitlab-ci-android](https://github.com/inovex/gitlab-ci-android)).
