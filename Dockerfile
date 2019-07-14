@@ -1,9 +1,27 @@
-FROM cirrusci/flutter:v1.5.4-hotfix.2-web 
+FROM inovex/gitlab-ci-android:latest
 
-RUN echo "Adding vsts_azpcontainer user and group" \
-    && sudo useradd --system --uid 1001 --shell /bin/bash --create-home vsts_azpcontainer \
-    && sudo adduser vsts_azpcontainer sudo
+RUN apt-get update
 
-ENV HOME /home/vsts_azpcontainer
+RUN apt-get install sudo
+
+RUN yes | /sdk/tools/bin/sdkmanager --licenses
+
+RUN useradd -m -u 1001 vsts_azpcontainer
+
+RUN su -c "echo '%vsts_azpcontainer ALL=(ALL:ALL) NOPASSWD:ALL' >> /etc/sudoers"
 
 USER vsts_azpcontainer
+
+RUN sudo apt-get install -y nodejs
+RUN sudo apt-get install -y npm
+
+RUN sudo npm install -g fvm --unsafe-perm
+
+RUN sudo chmod 777 /sdk/tools/bin/sdkmanager
+
+RUN sudo fvm stable
+RUN fvm 1.7.8+hotfix.3
+
+RUN sudo chmod -R 777 /home/vsts_azpcontainer/
+
+USER root
